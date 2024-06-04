@@ -36,24 +36,23 @@ board.appendChild(cell);
 }
 
 let ratPosition={x:1,y:1};
-
+// const rat=document.createElement('div');
+// rat.classList.add('rat');
+// document.querySelector(`[data-x="${ratPosition.x}"][data-y="${ratPosition.y}"]`).appendChild(rat);
 
 function solve(x,y,path=[]){
     if(x===cols-1 && y===rows-1){
         path.push({x,y})
         return path;
     }
-
+}
 
 if(x<0||x>=cols || y<0||y>=rows||mazeArray[x][y]===0){
     return false;
 }
-if (boardArray[y][x] === 2) {
-    return false;
-}
-
-boardArray[x][y] = 2; 
-path.push({ x, y });
+// else{
+//     return true;
+// }
 
 const directions=[
     {x:0,y:-1},
@@ -67,8 +66,4 @@ for(let direction of directions){
     if(newPath){
         return newPath;
     }
-}
-path.pop();
-    boardArray[y][x] = 1;  
-    return false;
 }
