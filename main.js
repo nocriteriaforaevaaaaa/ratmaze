@@ -61,24 +61,36 @@ function getSolution(board, start, end) {
   if (sc < 0 || sc > 4) return false;
 
   if (!board[sr][sc]) return false;
+  
 
   if (sr === fr && sc === fc) {
     animationList.push([sr, sc]);
     return true;
   }
-
-  const a =
-    getSolution(board, [sr + 1, sc], end) ||
-    getSolution(board, [sr, sc + 1], end);
-
-  if (a) {
+animationList.push([sr, sc]);
+  const right =getSolution(board, [sr + 1, sc], end);
+  if(!right){
     animationList.push([sr, sc]);
+  }else{
+    return true;
   }
-  return a;
-}
+   
+  const down=getSolution(board, [sr, sc + 1], end);
+    return down;
+    
+    
+  //  if(a){
+  //   animationList.push([sr, sc]);
+
+  //  return a;
+  //   }
+  }  
+  
+
+
 
 getSolution(boardArray, [ratPosition.x, ratPosition.y], [4, 4]);
-animationList.reverse();
+// animationList.reverse();
 let oldPos = [0, 0];
 
 const btn = document.getElementById("start");
